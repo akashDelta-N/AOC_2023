@@ -37,13 +37,38 @@ export const p2 = (input: string): number => {
     ['9', '9'],
     ['0', '0'],
   ]);
+
+  const reversedSpelledOutNumbers = new Map([
+    ['eno', '1'],
+    ['owt', '2'],
+    ['eerht', '3'],
+    ['ruof', '4'],
+    ['evif', '5'],
+    ['xis', '6'],
+    ['neves', '7'],
+    ['thgie', '8'],
+    ['enin', '9'],
+    ['orez', '0'],
+    ['1', '1'],
+    ['2', '2'],
+    ['3', '3'],
+    ['4', '4'],
+    ['5', '5'],
+    ['6', '6'],
+    ['7', '7'],
+    ['8', '8'],
+    ['9', '9'],
+    ['0', '0'],
+  ]);
+
   const numbers =lines.map(line => {
+    const reversedLine = line.split('').reverse().join('');
     const firstDigit = line.match(/one|two|three|four|five|six|seven|eight|nine|ten|\d/)?.[0] ?? '';
-    const lastDigit = line.match(/one|two|three|four|five|six|seven|eight|nine|ten|\d/g)?.pop() ?? '';
+    const lastDigit = reversedLine.match(/eno|owt|eerht|rouf|evif|xis|neves|thgie|enin|net|\d/)?.[0] ?? '';
     const convertedFirstDigit = spelledOutNumbers.get(firstDigit) ?? firstDigit;
-    const convertedLastDigit = spelledOutNumbers.get(lastDigit) ?? lastDigit;
+    const convertedLastDigit = reversedSpelledOutNumbers.get(lastDigit) ?? lastDigit;
     const inbetween = convertedFirstDigit + convertedLastDigit;
-    console.log(Number(inbetween));
+    console.log(Number(inbetween), reversedLine);
     return Number(inbetween);
   });
   console.log(numbers.sum());
