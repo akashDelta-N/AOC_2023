@@ -1,0 +1,10 @@
+{
+    "tasks": {
+      "start": "deno run --allow-read=. --allow-hrtime --allow-net=adventofcode.com index.ts",
+      "scaffold": "deno run --allow-read=. --allow-write=./days index.ts --scaffold",
+      "test": "deno test"
+    },
+    "imports": {
+      "std/": "https://deno.land/std@0.208.0/"
+    }
+  }

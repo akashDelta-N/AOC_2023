@@ -1,7 +1,7 @@
 import '../extension-methods.ts';
 
 export const p1 = (input: string): number => {
-  const lines = input.splitRows().map(String);
+  const lines = input.splitRows();
   const numbers =
     lines.map(line => {
       const firstDigit = line.match(/\d/)?.[0] ?? '';
@@ -14,7 +14,7 @@ export const p1 = (input: string): number => {
 }
 
 export const p2 = (input: string): number => {
-  const lines = input.splitRows().map(String);
+  const lines = input.splitRows();
   const spelledOutNumbers=  new Map([
     ['one', '1'],
     ['two', '2'],
@@ -63,12 +63,13 @@ export const p2 = (input: string): number => {
 
   const numbers =lines.map(line => {
     const reversedLine = line.split('').reverse().join('');
-    const firstDigit = line.match(/one|two|three|four|five|six|seven|eight|nine|ten|\d/)?.[0] ?? '';
-    const lastDigit = reversedLine.match(/eno|owt|eerht|rouf|evif|xis|neves|thgie|enin|net|\d/)?.[0] ?? '';
+    const matchedString = line.match(/one|two|three|four|five|six|seven|eight|nine|ten|\d/);
+    const firstDigit = matchedString?.[0] ?? '';
+    const reversedMatchedString = reversedLine.match(/eno|owt|eerht|ruof|evif|xis|neves|thgie|enin|net|\d/);
+    const lastDigit = reversedMatchedString?.[0] ?? '';
     const convertedFirstDigit = spelledOutNumbers.get(firstDigit) ?? firstDigit;
     const convertedLastDigit = reversedSpelledOutNumbers.get(lastDigit) ?? lastDigit;
     const inbetween = convertedFirstDigit + convertedLastDigit;
-    console.log(Number(inbetween), reversedLine);
     return Number(inbetween);
   });
   console.log(numbers.sum());
